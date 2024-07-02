@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contributions', function (Blueprint $table) {
+        Schema::create('chamas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->constrained();
-            $table->foreignId('members_id')->constrained();
-            $table->integer('Donation_amount');
-             $table->char('currency_code');
-
+            $table->string('name')->required()->searchable();
+            $table->string('description');
+            $table->integer('Number_of_members');
+            $table->string('Chama_type')->searchable();
+            $table->string('currency');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contributions');
+        Schema::dropIfExists('chamas');
     }
 };

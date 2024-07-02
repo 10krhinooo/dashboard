@@ -2,12 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\Tenancy\EditAdminProfile;
-use App\Filament\Pages\Tenancy\EditTeamProfile;
-use App\Filament\Pages\Tenancy\RegisterAdmin;
-use App\Filament\Pages\Tenancy\RegisterTeam;
-use App\Models\Admin;
-use App\Models\Team;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -24,32 +18,28 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AdminPanelProvider extends PanelProvider
+class TreasurerPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id('treasurer')
+            ->path('treasurer')
             ->login()
             ->colors([
-                'primary' => Color::Orange,
                  'danger' => Color::Rose,
             'gray' => Color::Gray,
             'info' => Color::Green,
 
             'success' => Color::Emerald,
             'warning' => Color::Orange,
-
             ])
-            ->brandName('Web Chama')
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/Treasurer/Resources'), for: 'App\\Filament\\Treasurer\\Resources')
+            ->discoverPages(in: app_path('Filament/Treasurer/Pages'), for: 'App\\Filament\\Treasurer\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Treasurer/Widgets'), for: 'App\\Filament\\Treasurer\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
@@ -68,8 +58,5 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
-            // ->tenant(Team::class,ownershipRelationship: 'team')
-            // ->tenantRegistration(RegisterTeam::class)
-            // ->tenantProfile(EditTeamProfile::class);
     }
 }

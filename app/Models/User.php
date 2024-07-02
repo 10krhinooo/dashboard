@@ -52,18 +52,33 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    //  public function Admins(): BelongsToMany
+    //
+    // public function getTenants(panel $panel): Collection
     // {
-    //     return $this->belongsToMany(Admin::class);
+    //     return $this->teams;
+    // }
+    // public function teams(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Team::class);
+    // }
+
+
+    // // public function getTenants(Panel $panel): Collection
+    // // {
+    // //     return $this->teams;
+    // // }
+
+    // public function canAccessTenant(Model $tenant): bool
+    // {
+    //     return $this->teams()->whereKey($tenant)->exists();
+    // }
+    // public function teams(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Team::class);
     // }
 
     // public function getTenants(Panel $panel): Collection
     // {
-    //     return $this->Admins;
-    // }
-
-    // public function canAccessTenant(Model $tenant): bool
-    // {
-    //     return $this->Admins()->whereKey($tenant)->exists();
+    //     return $this->teams;
     // }
 }
